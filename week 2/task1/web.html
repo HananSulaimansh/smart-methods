@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Controller</title>
+    <style>
+        body {
+            background-color: rgb(202, 241, 202);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            text-align: center;
+        }
+        .btn {
+            background-color: green;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+
+    <script >
+       
+            function moveRobot(direction) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", "index1.php", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.send("command=" + direction);
+            }
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Robot Controller</h1>
+        <button  class="btn" onclick="moveRobot('Forward')">Forward</button><br>
+        <button  class="btn" onclick="moveRobot('Left')">Left</button>
+        <button  class="btn" onclick="moveRobot('Stop')">Stop</button>
+        <button  class="btn" onclick="moveRobot('Right')">Right</button><br>
+        <button  class="btn" onclick="moveRobot('Backward')">Backward</button>
+    </div>
+</body>
+</html>
